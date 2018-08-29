@@ -14,7 +14,7 @@
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
-    "server": "nodemon -e js,html,css src/server/index.js",
+    "server": "nodemon -e js,html,css src/server/server.js",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "jest"
