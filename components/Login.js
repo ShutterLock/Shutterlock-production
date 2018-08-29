@@ -13,16 +13,23 @@ export default class LoginScreen extends Component {
   }
 
   login = () => {
-    const { username, password } = this.state;
-
-    fetch('http://192.168.0.126:8080/login', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-      headers: {
-        "Content-Type": "application/json"
-      },
-    }).then(response => {console.log('fetched response ', response);})
-      .catch(err => console.log('error ', err));
+    async function getLoginCredentials() {
+      try {
+        const { username, password } = this.state;
+        console.log('checking responseJSON ', responseJson)
+        let response = await fetch('http://192.168.0.126:8080/login', {
+          method: 'POST',
+          body: JSON.stringify({ username, password }),
+          headers: {
+            "Content-Type": "application/json"
+          },
+        })
+        let responseJson = await response.json();
+        console.log('checking responseJSON ', responseJson)
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
 
   static navigationOptions = {
@@ -44,7 +51,7 @@ export default class LoginScreen extends Component {
 
         <TouchableOpacity style={styles.button} 
           onPress={() => {
-            console.log(this.login());
+            this.login();
             this.props.navigation.navigate('Main')
           }}>
           <Text>Login</Text>
