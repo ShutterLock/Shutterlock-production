@@ -40,4 +40,4 @@ export default styles = StyleSheet.create({
     justifyContent:'center',
     backgroundColor: 'lightgrey'
   }
-});
+})
