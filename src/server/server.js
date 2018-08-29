@@ -7,7 +7,7 @@ const cors = require('cors');
 // using postgresSQL instead of mongoose
 const tokenService = require('./services/TokenService');
 const authService = require('./services/AuthService');
-const Controller = require('./controllers/event-controller.js');
+const Controller = require('./controllers/event-controller');
 
 // Configure Express Application Server
 const app = express();
@@ -47,7 +47,7 @@ app.post('/signup',
 
 //Login Route
 app.post('/login', 
-  Controller.verifyUser,
+  Controller.verifyUser
   
   // commented out for now to create routes. 
 //   tokenService.createToken, (req, res) => {
