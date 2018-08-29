@@ -23,7 +23,6 @@ export default class LoginScreen extends Component {
     }
 
     let verified = false;
-    console.log(users.user)
 
     users.user.forEach((obj, i) => {
       if (obj.username === username.toLowerCase().trim() && obj.password === password.toLowerCase().trim()) {
