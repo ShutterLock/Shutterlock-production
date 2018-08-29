@@ -1,18 +1,50 @@
+import React from 'react';
 import {createSwitchNavigator, createStackNavigator, createBottomTabNavigator} from 'react-navigation';
+import {ImageBackground, Button} from 'react-native';
 import HomeScreen from './Home';
-import DetailsScreen from './Details';
+import AlbumsScreen from './Albums';
 import ModalScreen from './Modal';
 import LoginScreen from './Login';
 import SignupScreen from './Signup';
+
+const ModalStack = createStackNavigator(
+  {
+    Main: AlbumsScreen,
+    Modal: {
+      screen: ModalScreen,
+    }
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+);
 
 const RootStack = createStackNavigator(
   {
     Home: {
       screen: HomeScreen,
+      navigationOptions: ({navigation}) => {
+        return {
+          headerTitle: 'Home',
+          headerLeft: (
+            <Button
+              onPress={() => navigation.navigate('Login')}
+              title="Logout"
+              color="#fff"
+            />
+          ),
+          headerRight: (
+            <ImageBackground
+            source={{uri: 'https://www.peace.edu/wp-content/uploads/Camera-icon-White-SMALL.png'}}
+            style={{width: 42, height: 30, marginRight: 20}}>
+              <Button onPress={() => navigation.navigate('Modal')} title=''/>
+            </ImageBackground>
+          ) 
+        }
+      }
     },
-    Details: {
-      screen: DetailsScreen,
-    },
+    Modal: ModalStack
   },
   {
     initialRouteName: 'Home',
@@ -29,32 +61,12 @@ const RootStack = createStackNavigator(
   }
 );
 
-const ModalStack = createStackNavigator(
+const AlbumsStack = createStackNavigator(
   {
-    Main: {
-      screen: RootStack,
-    },
-    Modal: {
-      screen: ModalScreen,
-    },
+    Albums: AlbumsScreen
   },
   {
-    mode: 'modal',
-    headerMode: 'none',
-  }
-);
-
-const DetailsStack = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    Details: {
-      screen: DetailsScreen,
-    },
-  },
-  {
-    initialRouteName: 'Details',
+    initialRouteName: 'Albums',
     headerMode: 'screen',
     navigationOptions: {
       headerStyle: {
@@ -71,7 +83,7 @@ const DetailsStack = createStackNavigator(
 const BottomStack = createBottomTabNavigator(
   {
     Home: RootStack,
-    Albums: DetailsStack
+    Albums: AlbumsStack
   }
 )
 
