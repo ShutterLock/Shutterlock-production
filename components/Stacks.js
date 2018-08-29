@@ -1,6 +1,6 @@
 import React from 'react';
 import {createSwitchNavigator, createStackNavigator, createBottomTabNavigator} from 'react-navigation';
-import {ImageBackground, Button} from 'react-native';
+import {Image, TouchableOpacity, Button} from 'react-native';
 import HomeScreen from './Home';
 import AlbumsScreen from './Albums';
 import ModalScreen from './Modal';
@@ -9,16 +9,20 @@ import SignupScreen from './Signup';
 
 const ModalStack = createStackNavigator(
   {
-    Main: AlbumsScreen,
-    Modal: {
-      screen: ModalScreen,
-    }
+    Modal: ModalScreen
   },
   {
-    mode: 'modal',
     headerMode: 'none',
+    tabBarVisible: false
   }
 );
+
+ModalStack.navigationOptions = () => {
+  return {
+    headerMode: 'none',
+    tabBarVisible: false
+  }
+}
 
 const RootStack = createStackNavigator(
   {
@@ -26,6 +30,13 @@ const RootStack = createStackNavigator(
       screen: HomeScreen,
       navigationOptions: ({navigation}) => {
         return {
+          headerStyle: {
+            backgroundColor: 'dodgerblue',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
           headerTitle: 'Home',
           headerLeft: (
             <Button
@@ -35,51 +46,30 @@ const RootStack = createStackNavigator(
             />
           ),
           headerRight: (
-            <ImageBackground
-            source={{uri: 'https://www.peace.edu/wp-content/uploads/Camera-icon-White-SMALL.png'}}
-            style={{width: 42, height: 30, marginRight: 20}}>
-              <Button onPress={() => navigation.navigate('Modal')} title=''/>
-            </ImageBackground>
+            <TouchableOpacity onPress={() => navigation.navigate('Modal')}>
+              <Image
+              source={{uri: 'https://www.peace.edu/wp-content/uploads/Camera-icon-White-SMALL.png'}}
+              style={{width: 42, height: 30, marginRight: 20}}/>
+            </TouchableOpacity>
           ) 
         }
       }
     },
-    Modal: ModalStack
+    Modal: {
+      screen: ModalStack,
+      navigationOptions: {
+        tabBarVisible: false
+      }
+    }
   },
   {
-    initialRouteName: 'Home',
-    headerMode: 'screen',
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: 'dodgerblue',
-      },
-      headerTintColor: 'white',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    }
+    mode: 'modal',
   }
 );
 
-const AlbumsStack = createStackNavigator(
-  {
-    Albums: AlbumsScreen
-  },
-  {
-    initialRouteName: 'Albums',
-    headerMode: 'screen',
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: 'dodgerblue',
-      },
-      headerTintColor: 'white',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    }
-  }
-);
+const AlbumsStack = createStackNavigator({Albums: AlbumsScreen})
 
+//don't edit below
 const BottomStack = createBottomTabNavigator(
   {
     Home: RootStack,

@@ -4,7 +4,14 @@ import styles from './StyleSheet'
 
 class AlbumsScreen extends Component {
   static navigationOptions = {
-    title: 'Albums',
+      headerTitle: 'Albums',
+      headerStyle: {
+        backgroundColor: 'dodgerblue',
+      },
+      headerTintColor: 'white',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
   }
 
   constructor(props) {
