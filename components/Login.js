@@ -7,22 +7,34 @@ export default class LoginScreen extends Component {
     super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
     };
     
   }
 
-  login = () => {
+  login = async () => {
     const { username, password } = this.state;
+    let users;
+    try {
+      const getData = await fetch('http://192.168.0.126:8080/login')
+      users = await getData.json();
+    } catch (err) {
+      console.log('async err ', err);
+    }
 
-    fetch('http://192.168.0.126:8080/login', {
-      method: 'post',
-      body: JSON.stringify({ username, password }),
-      headers: {
-        "Content-Type": "application/json"
-      },
-    }).then(response => {console.log('fetched response ', response);})
-      .catch(err => console.log('error ', err));
+    let verified = false;
+
+    users.user.forEach((obj, i) => {
+      if (obj.username === username.toLowerCase().trim() && obj.password === password.toLowerCase().trim()) {
+        verified = true;
+      } 
+    })
+
+    if (verified) {
+      this.props.navigation.navigate('Main')
+    } else {
+      this.props.navigation.navigate('Signup')
+    }
   }
 
   static navigationOptions = {
@@ -45,7 +57,6 @@ export default class LoginScreen extends Component {
         <TouchableOpacity style={styles.button} 
           onPress={() => {
             this.login();
-            this.props.navigation.navigate('Main')
           }}>
           <Text>Login</Text>
         </TouchableOpacity>

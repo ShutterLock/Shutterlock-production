@@ -40,7 +40,10 @@ app.post('/signup',
 //Login Route
 app.get('/login', 
   Controller.verifyUser,
-  // commented out for now to create routes. 
+  (req, res) => {
+    res.send(res.locals);
+  }
+  // Need to work on tokens - Jon. 
 //   tokenService.createToken, (req, res) => {
 //   res.json({ token: res.locals.token, palettes: res.locals.palettes });
 // }
