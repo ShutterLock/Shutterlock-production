@@ -1,5 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 97328
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://pr-ewt.jcisbroke.shutterlock-production.exp.direct",
+  "packagerNgrokUrl": "https://packager.pr-ewt.jcisbroke.shutterlock-production.exp.direct",
+  "ngrokPid": 8169
 }

@@ -32,5 +32,12 @@ export default styles = StyleSheet.create({
     color: 'black',
     fontSize: 30,
     marginTop: 50
+  },
+  album: {
+    flex: 1,
+    borderWidth: 1,
+    height: 50,
+    justifyContent:'center',
+    backgroundColor: 'lightgrey'
   }
 });
