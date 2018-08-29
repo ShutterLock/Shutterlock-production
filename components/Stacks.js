@@ -17,12 +17,13 @@ const ModalStack = createStackNavigator(
   }
 );
 
-ModalStack.navigationOptions = () => {
-  return {
-    headerMode: 'none',
-    tabBarVisible: false
-  }
-}
+// ModalStack.navigationOptions = () => {
+//   console.log('he')
+//   return {
+//     headerMode: 'none',
+//     tabBarVisible: false
+//   }
+// }
 
 const RootStack = createStackNavigator(
   {
@@ -55,12 +56,7 @@ const RootStack = createStackNavigator(
         }
       }
     },
-    Modal: {
-      screen: ModalStack,
-      navigationOptions: {
-        tabBarVisible: false
-      }
-    }
+    Modal: ModalStack
   },
   {
     mode: 'modal',
