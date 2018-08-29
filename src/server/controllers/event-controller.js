@@ -36,9 +36,10 @@ const controller = {
       .then(user => {
         // if query is successful allow user to naviage to next step, otherwise alert them of invalid login credentials. 
         if (user[0]) {
-          // need navigation code here
+          console.log(user[0])
+          return true;
         } else {
-          // do shaking motion here to alert user of invalid credentials. 
+          return false; 
         }
       })
       .catch(error => console.log('error ', error));
