@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import {View, Text, Image, TextInput, Button, TouchableOpacity} from 'react-native';
+import {View, Text, ImageBackground, TextInput, Button, TouchableOpacity} from 'react-native';
 import styles from './StyleSheet';
 
 const CameraIcon = (props) => {
   return (
-    <Image
+    <ImageBackground
     source={{uri: 'https://www.peace.edu/wp-content/uploads/Camera-icon-White-SMALL.png'}}
-    style={{width: 42, height: 30, marginRight: 20}}/>
+    style={{width: 42, height: 30, marginRight: 20}}>
+      <Button onPress={() => this.navigation.navigate('MyModal')} title=''/>
+    </ImageBackground>
   )
 }
 
@@ -28,7 +30,13 @@ export default class HomeScreen extends Component {
           color="#fff"
         />
       ),
-      headerRight: <CameraIcon /> 
+      headerRight: (
+        <ImageBackground
+        source={{uri: 'https://www.peace.edu/wp-content/uploads/Camera-icon-White-SMALL.png'}}
+        style={{width: 42, height: 30, marginRight: 20}}>
+          <Button onPress={() => navigation.navigate('Modal')} title=''/>
+        </ImageBackground>
+      ) 
     }
   }
 

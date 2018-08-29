@@ -10,7 +10,7 @@ class DetailsScreen extends Component {
     return (
     <View>
       <Text></Text>
-      <Button title='Back to Home' onPress={() => this.props.navigation.navigate('Home')}/>
+      <Button title='Back to Home' onPress={() => this.props.navigation.goBack()}/>
     </View>
     )
   }
