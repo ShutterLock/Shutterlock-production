@@ -6,24 +6,18 @@ import AlbumsScreen from './Albums';
 import ModalScreen from './Modal';
 import LoginScreen from './Login';
 import SignupScreen from './Signup';
+import CameraScreen from './Camera';
+import Album from './Album'
 
 const ModalStack = createStackNavigator(
   {
-    Modal: ModalScreen
+    Modal: CameraScreen
   },
   {
     headerMode: 'none',
     tabBarVisible: false
   }
 );
-
-// ModalStack.navigationOptions = () => {
-//   console.log('he')
-//   return {
-//     headerMode: 'none',
-//     tabBarVisible: false
-//   }
-// }
 
 const RootStack = createStackNavigator(
   {
@@ -63,7 +57,10 @@ const RootStack = createStackNavigator(
   }
 );
 
-const AlbumsStack = createStackNavigator({Albums: AlbumsScreen})
+const AlbumsStack = createStackNavigator({
+  Albums: AlbumsScreen,
+  Album: Album
+})
 
 //don't edit below
 const BottomStack = createBottomTabNavigator(
