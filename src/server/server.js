@@ -23,13 +23,6 @@ app.use(cors());
 // Middleware to parse tokens out of incoming request headers
 app.use(tokenService.receiveToken);
 
-// Dummy Route - May be scrapped. 
-app.get('/', 
-  (req, res) => {
-    res.send('Hello Brit');
-  }
-);
-
 // Dummy Restricted Route - Unsure of how this one works still.
 app.get('/restricted', authService.restrict(), (req, res) => {
   res.json({ tokenData: res.locals.tokenData });
@@ -40,16 +33,17 @@ app.post('/signup',
   Controller.createUser,
   tokenService.createToken, 
   (req, res) => {
-    console.log('where is my token', res.locals.token)
     res.json({ token: res.locals.token });
   }
 );
 
 //Login Route
-app.post('/login', 
-  Controller.verifyUser
-  
-  // commented out for now to create routes. 
+app.get('/login', 
+  Controller.verifyUser,
+  (req, res) => {
+    res.send(res.locals);
+  }
+  // Need to work on tokens - Jon. 
 //   tokenService.createToken, (req, res) => {
 //   res.json({ token: res.locals.token, palettes: res.locals.palettes });
 // }
